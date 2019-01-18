@@ -6,6 +6,7 @@ from django.views.generic import View
 from django.core.urlresolvers import reverse
 import re
 from user.models import User
+from utils.mixin import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.core.mail import send_mail
 
@@ -169,14 +170,14 @@ class LoginView(View):
 
 
 # /user/user
-class UserCenter(View):
+class UserCenter(LoginRequiredMixin, View):
     def get(self, request):
         context = {'page': 'user'}
         return render(request, 'user/user_center_info.html', context)
 
 
 # /user/order
-class OrderView(View):
+class OrderView(LoginRequiredMixin, View):
     """ 用户中心 订单 """
 
     def get(self, request):
@@ -185,7 +186,7 @@ class OrderView(View):
 
 
 # /user/address
-class AddressView(View):
+class AddressView(LoginRequiredMixin, View):
     """ 用户中心 地址 """
 
     def get(self, request):
