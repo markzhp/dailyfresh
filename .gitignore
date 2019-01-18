@@ -9,6 +9,7 @@ __pycache__/
 # My own
 .xml
 .idea
+.pyc
 
 # Distribution / packaging
 .Python
